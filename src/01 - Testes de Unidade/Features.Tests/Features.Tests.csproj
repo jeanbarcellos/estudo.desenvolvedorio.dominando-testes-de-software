@@ -7,8 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="05 - Mook\**" />
+    <EmbeddedResource Remove="05 - Mook\**" />
+    <None Remove="05 - Mook\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Bogus" Version="33.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -25,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-	<Folder Include="05 - Mook\" />
 	<Folder Include="06 - AutoMook\" />
 	<Folder Include="07 - FluentAssertions\" />
   </ItemGroup>
