@@ -57,6 +57,7 @@ namespace Features.Tests
             result.Should().BeFalse();
             cliente.ValidationResult.Errors.Should().HaveCountGreaterOrEqualTo(1, "deve possuir erros de validação");
 
+            // 03-16 - Mensanges de Saída nos testes
             _outputHelper.WriteLine($"Foram encontrados {cliente.ValidationResult.Errors.Count} erros nesta validação");
         }
     }
