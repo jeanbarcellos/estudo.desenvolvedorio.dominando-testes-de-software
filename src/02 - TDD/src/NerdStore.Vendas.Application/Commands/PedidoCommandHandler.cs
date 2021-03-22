@@ -21,6 +21,8 @@ namespace NerdStore.Vendas.Application.Commands
         {
             var pedidoItem = new PedidoItem(message.ProdutoId, message.Nome, message.Quantidade, message.ValorUnitario);
             var pedido = Pedido.PedidoFactory.NovoPedidoRascunho(message.ClienteId);
+            pedido.AdicionarItem(pedidoItem);
+
             _pedidoRepository.Adicionar(pedido);
 
             await _mediator.Publish(new PedidoItemAdicionadoEvent(
