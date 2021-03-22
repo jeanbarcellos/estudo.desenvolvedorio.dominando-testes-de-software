@@ -11,5 +11,6 @@ namespace NerdStore.Vendas.Domain
         void Atualizar(Pedido pedido);
 
         void AdicionarItem(PedidoItem pedidoItem);
+        void AtualizarItem(PedidoItem pedidoItem);
     }
 }
