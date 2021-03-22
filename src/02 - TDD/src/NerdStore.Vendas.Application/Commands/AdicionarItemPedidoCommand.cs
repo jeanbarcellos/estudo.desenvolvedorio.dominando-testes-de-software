@@ -1,8 +1,7 @@
-﻿using FluentValidation;
-using FluentValidation.Results;
+﻿using System;
+using FluentValidation;
 using NerdStore.Core.Messages;
 using NerdStore.Vendas.Domain;
-using System;
 
 namespace NerdStore.Vendas.Application.Commands
 {
@@ -13,6 +12,7 @@ namespace NerdStore.Vendas.Application.Commands
         public string Nome { get; private set; }
         public int Quantidade { get; private set; }
         public decimal ValorUnitario { get; private set; }
+
 
         public AdicionarItemPedidoCommand(Guid clienteId, Guid produtoId, string nome, int quantidade, decimal valorUnitario)
         {
@@ -56,7 +56,7 @@ namespace NerdStore.Vendas.Application.Commands
             RuleFor(c => c.Quantidade)
                 .GreaterThan(0)
                 .WithMessage(QtdMinErroMsg)
-                .LessThanOrEqualTo(Pedido.MAX_UNIDADES_ITEM)
+                .LessThan(Pedido.MAX_UNIDADES_ITEM)
                 .WithMessage(QtdMaxErroMsg);
 
             RuleFor(c => c.ValorUnitario)
