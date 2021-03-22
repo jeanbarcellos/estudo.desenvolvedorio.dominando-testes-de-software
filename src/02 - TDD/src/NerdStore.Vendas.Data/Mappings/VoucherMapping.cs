@@ -8,8 +8,9 @@ namespace NerdStore.Catalogo.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Voucher> builder)
         {
-            builder.HasKey(c => c.Id);
+            builder.ToTable("Vouchers");
 
+            builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Codigo)
                 .IsRequired()
@@ -19,8 +20,6 @@ namespace NerdStore.Catalogo.Data.Mappings
             builder.HasMany(c => c.Pedidos)
                 .WithOne(c => c.Voucher)
                 .HasForeignKey(c => c.VoucherId);
-
-            builder.ToTable("Vouchers");
         }
     }
 }

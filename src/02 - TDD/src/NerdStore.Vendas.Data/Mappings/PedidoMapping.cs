@@ -8,17 +8,19 @@ namespace NerdStore.Catalogo.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Pedido> builder)
         {
+            builder.ToTable("Pedidos");
+
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Codigo)
-                .HasDefaultValueSql("NEXT VALUE FOR MinhaSequencia");
+                // .HasDefaultValueSql("NEXT VALUE FOR MinhaSequencia");
+                .HasDefaultValueSql("nextval('\"MinhaSequencia\"'::regclass)");
+
 
             // 1 : N => Pedido : PedidoItems
             builder.HasMany(c => c.PedidoItems)
                 .WithOne(c => c.Pedido)
                 .HasForeignKey(c => c.PedidoId);
-
-            builder.ToTable("Pedidos");
         }
     }
 }
