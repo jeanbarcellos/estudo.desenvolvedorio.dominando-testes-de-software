@@ -26,6 +26,50 @@ namespace NerdStore.Vendas.Domain
             _pedidoItems = new List<PedidoItem>();
         }
 
+        public void AdicionarItem(PedidoItem pedidoItem)
+        {
+            ValidarQuantidadeItemPermitida(pedidoItem);
+
+            if (PedidoItemExistente(pedidoItem))
+            {
+                var itemExistente = _pedidoItems.FirstOrDefault(p => p.ProdutoId == pedidoItem.ProdutoId);
+
+                itemExistente.AdicionarUnidades(pedidoItem.Quantidade);
+                pedidoItem = itemExistente;
+                _pedidoItems.Remove(itemExistente);
+            }
+
+            _pedidoItems.Add(pedidoItem);
+            CalcularValorPedido();
+        }
+
+        public void AtualizarItem(PedidoItem pedidoItem)
+        {
+            ValidarPedidoItemInexistente(pedidoItem);
+            ValidarQuantidadeItemPermitida(pedidoItem);
+
+            var itemExistente = PedidoItems.FirstOrDefault(p => p.ProdutoId == pedidoItem.ProdutoId);
+
+            _pedidoItems.Remove(itemExistente);
+            _pedidoItems.Add(pedidoItem);
+
+            CalcularValorPedido();
+        }
+
+        public void RemoverItem(PedidoItem pedidoItem)
+        {
+            ValidarPedidoItemInexistente(pedidoItem);
+
+            _pedidoItems.Remove(pedidoItem);
+
+            CalcularValorPedido();
+        }
+
+        public void TornarRascunho()
+        {
+            PedidoStatus = PedidoStatus.Rascunho;
+        }
+
         public ValidationResult AplicarVoucher(Voucher voucher)
         {
             var validationResult = voucher.ValidarSeAplicavel();
@@ -93,50 +137,6 @@ namespace NerdStore.Vendas.Domain
             }
 
             if (quantidadeItems > MAX_UNIDADES_ITEM) throw new DomainException($"Máximo de {MAX_UNIDADES_ITEM} unidades por produto.");
-        }
-
-        public void AdicionarItem(PedidoItem pedidoItem)
-        {
-            ValidarQuantidadeItemPermitida(pedidoItem);
-
-            if (PedidoItemExistente(pedidoItem))
-            {
-                var itemExistente = _pedidoItems.FirstOrDefault(p => p.ProdutoId == pedidoItem.ProdutoId);
-
-                itemExistente.AdicionarUnidades(pedidoItem.Quantidade);
-                pedidoItem = itemExistente;
-                _pedidoItems.Remove(itemExistente);
-            }
-
-            _pedidoItems.Add(pedidoItem);
-            CalcularValorPedido();
-        }
-
-        public void AtualizarItem(PedidoItem pedidoItem)
-        {
-            ValidarPedidoItemInexistente(pedidoItem);
-            ValidarQuantidadeItemPermitida(pedidoItem);
-
-            var itemExistente = PedidoItems.FirstOrDefault(p => p.ProdutoId == pedidoItem.ProdutoId);
-
-            _pedidoItems.Remove(itemExistente);
-            _pedidoItems.Add(pedidoItem);
-
-            CalcularValorPedido();
-        }
-
-        public void RemoverItem(PedidoItem pedidoItem)
-        {
-            ValidarPedidoItemInexistente(pedidoItem);
-
-            _pedidoItems.Remove(pedidoItem);
-
-            CalcularValorPedido();
-        }
-
-        public void TornarRascunho()
-        {
-            PedidoStatus = PedidoStatus.Rascunho;
         }
 
         public static class PedidoFactory
