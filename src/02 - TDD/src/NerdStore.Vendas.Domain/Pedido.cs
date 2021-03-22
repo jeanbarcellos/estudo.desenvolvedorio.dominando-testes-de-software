@@ -1,4 +1,5 @@
-﻿using NerdStore.Core.DomainObjects;
+﻿using FluentValidation.Results;
+using NerdStore.Core.DomainObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,9 @@ namespace NerdStore.Vendas.Domain
         public Guid ClienteId { get; private set; }
         public decimal ValorTotal { get; private set; }
         public PedidoStatus PedidoStatus { get; private set; }
+        public decimal Desconto { get; private set; }
+        public bool VoucherUtilizado { get; private set; }
+        public Voucher Voucher { get; private set; }
 
         private readonly List<PedidoItem> _pedidoItems;
         public IReadOnlyCollection<PedidoItem> PedidoItems => _pedidoItems;
@@ -21,6 +25,45 @@ namespace NerdStore.Vendas.Domain
         {
             _pedidoItems = new List<PedidoItem>();
         }
+
+        public ValidationResult AplicarVoucher(Voucher voucher)
+        {
+            var validationResult = voucher.ValidarSeAplicavel();
+            if (!validationResult.IsValid) return validationResult;
+
+            Voucher = voucher;
+            VoucherUtilizado = true;
+
+            CalcularValorTotalDesconto();
+
+            return validationResult;
+        }
+
+        public void CalcularValorTotalDesconto()
+        {
+            if (!VoucherUtilizado) return;
+
+            decimal desconto = 0;
+
+            if (Voucher.TipoDescontoVoucher == TipoDescontoVoucher.Valor)
+            {
+                if (Voucher.ValorDesconto.HasValue)
+                {
+                    desconto = Voucher.ValorDesconto.Value;
+                }
+            }
+            else
+            {
+                if (Voucher.PercentualDesconto.HasValue)
+                {
+                    desconto = (ValorTotal * Voucher.PercentualDesconto.Value) / 100;
+                }
+            }
+
+            ValorTotal -= desconto;
+            Desconto = desconto;
+        }
+
 
         public void CalcularValorPedido()
         {
@@ -87,7 +130,6 @@ namespace NerdStore.Vendas.Domain
 
             CalcularValorPedido();
         }
-
 
         public void TornarRascunho()
         {
