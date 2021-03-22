@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using MediatR;
+using Moq;
 using Moq.AutoMock;
 using NerdStore.Vendas.Application.Commands;
 using NerdStore.Vendas.Domain;
@@ -101,6 +102,24 @@ namespace NerdStore.Vendas.Application.Tests.Pedidos
             mocker.GetMock<IPedidoRepository>().Verify(r => r.AtualizarItem(It.IsAny<PedidoItem>()), Times.Once);
             mocker.GetMock<IPedidoRepository>().Verify(r => r.Atualizar(It.IsAny<Pedido>()), Times.Once);
             mocker.GetMock<IPedidoRepository>().Verify(r => r.UnitOfWork.Commit(), Times.Once);
+        }
+
+        [Fact(DisplayName = "Adicionar Item Command Inválido")]
+        [Trait("Categoria", "Vendas - Pedido Command Handler")]
+        public async Task AdicionarItem_CommandInvalido_DeveRetornarFalsoELancarEventosDeNotificacao()
+        {
+            // Arrange
+            var pedidoCommand = new AdicionarItemPedidoCommand(Guid.Empty, Guid.Empty, "", 0, 0);
+
+            var mocker = new AutoMocker();
+            var pedidoHandler = mocker.CreateInstance<PedidoCommandHandler>();
+
+            // Act
+            var result = await pedidoHandler.Handle(pedidoCommand, CancellationToken.None);
+
+            // Assert
+            Assert.False(result);
+            mocker.GetMock<IMediator>().Verify(m => m.Publish(It.IsAny<INotification>(), CancellationToken.None), Times.Exactly(5));
         }
 
     }
