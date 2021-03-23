@@ -112,3 +112,18 @@ Referências:
    6. Teste os seus conhecimentos
 9. Encerramento
    1. Palavras Finais
+
+
+
+
+## Anotações
+
+Usar o PostgreSQL ao invés do SQL Server
+
+* https://medium.com/@RobertKhou/asp-net-core-mvc-identity-using-postgresql-database-bc52255f67c4
+
+
+Testes de Integração
+
+* https://docs.microsoft.com/pt-br/aspnet/core/test/integration-tests
+
