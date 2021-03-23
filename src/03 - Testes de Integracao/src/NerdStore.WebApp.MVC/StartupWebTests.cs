@@ -47,6 +47,7 @@ namespace NerdStore.WebApp.MVC
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
+            // Vem junto no scaffolding e tava ferrando com a execução do teste de integração
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

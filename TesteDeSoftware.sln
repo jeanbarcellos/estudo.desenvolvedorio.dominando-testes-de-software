@@ -37,13 +37,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Testes de Integração
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration Tests", "Integration Tests", "{5DEEE2D3-EA33-4093-A917-4ED8F6D54917}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdStore.WebApp.Tests", "src\03 - Testes de Integracao\tests\NerdStore.WebApp.Tests\NerdStore.WebApp.Tests.csproj", "{026A3E03-8A21-4735-A952-4E161EEC3E75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdStore.WebApp.Tests", "src\03 - Testes de Integracao\tests\NerdStore.WebApp.Tests\NerdStore.WebApp.Tests.csproj", "{026A3E03-8A21-4735-A952-4E161EEC3E75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdStore.Catalogo.Domain", "src\03 - Testes de Integracao\src\NerdStore.Catalogo.Domain\NerdStore.Catalogo.Domain.csproj", "{DD9A78E2-7EB2-4CBE-BC71-BF247DA52390}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdStore.Catalogo.Domain", "src\03 - Testes de Integracao\src\NerdStore.Catalogo.Domain\NerdStore.Catalogo.Domain.csproj", "{DD9A78E2-7EB2-4CBE-BC71-BF247DA52390}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdStore.Catalogo.Application", "src\03 - Testes de Integracao\src\NerdStore.Catalogo.Application\NerdStore.Catalogo.Application.csproj", "{A59D0C13-A3C7-4E2F-95DA-CD86121B41EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdStore.Catalogo.Application", "src\03 - Testes de Integracao\src\NerdStore.Catalogo.Application\NerdStore.Catalogo.Application.csproj", "{A59D0C13-A3C7-4E2F-95DA-CD86121B41EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdStore.Catalogo.Data", "src\03 - Testes de Integracao\src\NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj", "{6E762C70-096C-4F3A-9CAC-67CFED104D8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdStore.Catalogo.Data", "src\03 - Testes de Integracao\src\NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj", "{6E762C70-096C-4F3A-9CAC-67CFED104D8A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdStore.WebApp.MVC", "src\03 - Testes de Integracao\src\NerdStore.WebApp.MVC\NerdStore.WebApp.MVC.csproj", "{F9CF2FF9-6690-43A6-AE28-F29B25A83A39}"
 EndProject
