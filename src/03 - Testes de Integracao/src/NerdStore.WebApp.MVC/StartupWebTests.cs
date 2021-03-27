@@ -17,9 +17,15 @@ namespace NerdStore.WebApp.MVC
 {
     public class StartupWebTests
     {
-        public StartupWebTests(IConfiguration configuration)
+        public StartupWebTests(IHostEnvironment hostEnvironment)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(hostEnvironment.ContentRootPath)
+                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile($"appsettings.{hostEnvironment.EnvironmentName}.json", true, true)
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -48,11 +54,6 @@ namespace NerdStore.WebApp.MVC
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddControllersWithViews();
-
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "NerdStore.WebApp.MVC", Version = "v1" });
-            });
 
             services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
 
@@ -91,11 +92,6 @@ namespace NerdStore.WebApp.MVC
                 endpoints.MapRazorPages();
             });
 
-            app.UseSwagger();
-            app.UseSwaggerUI(s =>
-            {
-                s.SwaggerEndpoint("/swagger/v1/swagger.json", "desenvolvedor.io API v1.0");
-            });
         }
     }
 }
