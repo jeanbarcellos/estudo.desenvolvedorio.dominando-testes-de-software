@@ -29,14 +29,16 @@ namespace NerdStore.WebApp.MVC.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
 
-        public CarrinhoControllerApi(INotificationHandler<DomainNotification> notifications,
-                                  IProdutoAppService produtoAppService,
-                                  IMediator mediatorHandler,
-                                  IPedidoQueries pedidoQueries,
-                                  IHttpContextAccessor httpContextAccessor,
-                                  SignInManager<IdentityUser> signInManager,
-                                  UserManager<IdentityUser> userManager,
-                                  IOptions<AppSettings> appSettings) : base(notifications, mediatorHandler, httpContextAccessor)
+        public CarrinhoControllerApi(
+            INotificationHandler<DomainNotification> notifications,
+            IProdutoAppService produtoAppService,
+            IMediator mediatorHandler,
+            IPedidoQueries pedidoQueries,
+            IHttpContextAccessor httpContextAccessor,
+            SignInManager<IdentityUser> signInManager,
+            UserManager<IdentityUser> userManager,
+            IOptions<AppSettings> appSettings) : base(notifications, mediatorHandler, httpContextAccessor
+        )
         {
             _produtoAppService = produtoAppService;
             _mediatorHandler = mediatorHandler;
