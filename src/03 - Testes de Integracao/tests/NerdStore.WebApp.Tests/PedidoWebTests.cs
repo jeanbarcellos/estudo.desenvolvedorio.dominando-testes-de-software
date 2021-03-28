@@ -47,14 +47,19 @@ namespace NerdStore.WebApp.Tests
             // Act
             var postResponse = await _testsFixture.Client.SendAsync(postRequest);
 
-            var teste = await postRequest.Content.ReadAsByteArrayAsync();
+            // Assert
+            postResponse.EnsureSuccessStatusCode();
 
             var html = new HtmlParser()
                 .ParseDocumentAsync(await postResponse.Content.ReadAsStringAsync())
                 .Result
                 .All;
 
-            var formQuantidade = html?.FirstOrDefault(c => c.Id == "quantidade")?.GetAttribute("value");
+            var formQuantidade = html?.FirstOrDefault(c => c.Id == "quantidade")?.GetAttribute("value")?.ApenasNumeros();
+            var valorUnitario = html?.FirstOrDefault(c => c.Id == "valorUnitario")?.TextContent.Split(".")[0]?.ApenasNumeros();
+            var valorTotal = html?.FirstOrDefault(c => c.Id == "valorTotal")?.TextContent.Split(".")[0]?.ApenasNumeros();
+
+            Assert.Equal(valorTotal, valorUnitario * formQuantidade);
         }
     }
 }
