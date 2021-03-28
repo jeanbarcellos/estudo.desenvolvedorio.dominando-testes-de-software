@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Bogus;
 using Microsoft.AspNetCore.Mvc.Testing;
 using NerdStore.WebApp.MVC;
+using NerdStore.WebApp.MVC.Models;
 using Xunit;
 
 namespace NerdStore.WebApp.Tests.Config
@@ -25,6 +27,8 @@ namespace NerdStore.WebApp.Tests.Config
 
         public string UsuarioEmail;
         public string UsuarioSenha;
+
+        public string UsuarioToken;
 
         public IntegrationTestsFixture()
         {
@@ -82,6 +86,22 @@ namespace NerdStore.WebApp.Tests.Config
             await Client.SendAsync(postRequest);
         }
 
+        public async Task RealizarLoginApi()
+        {
+            var userData = new LoginViewModel
+            {
+                Email = "teste@teste.com",
+                Senha = "Teste@123"
+            };
+
+            // Recriando o client para evitar configurações de Web
+            Client = Factory.CreateClient();
+
+            var response = await Client.PostAsJsonAsync("api/login", userData);
+            response.EnsureSuccessStatusCode();
+
+            UsuarioToken = await response.Content.ReadAsStringAsync();
+        }
 
         public void Dispose()
         {

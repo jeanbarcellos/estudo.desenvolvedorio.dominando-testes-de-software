@@ -32,6 +32,8 @@ namespace NerdStore.WebApp.Tests
                 Quantidade = 2
             };
 
+            await _testsFixture.RealizarLoginApi();
+
             // Act
             var postResponse = await _testsFixture.Client.PostAsJsonAsync("api/carrinho", itemInfo);
 
