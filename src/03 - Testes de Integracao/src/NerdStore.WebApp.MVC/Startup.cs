@@ -12,6 +12,8 @@ using NerdStore.Catalogo.Data;
 using NerdStore.Vendas.Data;
 using NerdStore.WebApp.MVC.Data;
 using NerdStore.WebApp.MVC.Setup;
+using System;
+using System.Collections.Generic;
 
 namespace NerdStore.WebApp.MVC
 {
@@ -49,14 +51,57 @@ namespace NerdStore.WebApp.MVC
 
             services.AddControllersWithViews();
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "NerdStore.WebApp.MVC", Version = "v1" });
-            });
 
             services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
 
             services.AddMediatR(typeof(Startup));
+
+            services.AddSwaggerGen(c =>
+            {
+                var securityRequirement = new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new List<string>()
+                    }
+                };
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "Insira o token JWT desta maneira: Bearer {seu token}",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                c.AddSecurityRequirement(securityRequirement);
+
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "desenvolvedor.io API",
+                    Description = "desenvolvedor.io  API",
+                    TermsOfService = null,
+                    Contact = new OpenApiContact
+                    {
+                        Name = "desenvolvedor.io",
+                        Email = "email@desenvolvedor.io",
+                        Url = new Uri("http://desenvolvedor.io")
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "MIT",
+                        Url = new Uri("http://desenvolvedor.io/licensa")
+                    }
+                });
+            });
 
             services.RegisterServices();
         }
