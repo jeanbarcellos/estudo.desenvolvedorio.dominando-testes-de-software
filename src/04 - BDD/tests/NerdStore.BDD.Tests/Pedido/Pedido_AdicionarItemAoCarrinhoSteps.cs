@@ -1,20 +1,28 @@
 ﻿using NerdStore.BDD.Tests.Config;
 using System;
 using TechTalk.SpecFlow;
+using Xunit;
 
 namespace NerdStore.BDD.Tests.Pedido
 {
     [Binding]
+    [CollectionDefinition(nameof(AutomacaoWebFixtureCollection))]
     public class Pedido_AdicionarItemAoCarrinhoSteps
     {
-        [Given(@"Que um produto esteja na vitrine")]
+        private readonly AutomacaoWebTestsFixture _testsFixture;
+
+        public Pedido_AdicionarItemAoCarrinhoSteps(AutomacaoWebTestsFixture testsFixture)
+        {
+            _testsFixture = testsFixture;
+        }
+
+            [Given(@"Que um produto esteja na vitrine")]
         public void DadoQueUmProdutoEstejaNaVitrine()
         {
             // Arrange
-            var browser = new SeleniumHelper(Browser.Chrome, new ConfigurationHelper(), false);
-            browser.IrParaUrl("https://desenvolvedor.io");
-            browser.ClicarLinkPorTexto("Entrar");
-            browser.PreencherTextBoxPorId("Email", "contato@teste.com");
+            _testsFixture.BrowserHelper.IrParaUrl("https://desenvolvedor.io");
+            _testsFixture.BrowserHelper.ClicarLinkPorTexto("Entrar");
+            _testsFixture.BrowserHelper.PreencherTextBoxPorId("Email", "contato@teste.com");
 
             // Act
 
