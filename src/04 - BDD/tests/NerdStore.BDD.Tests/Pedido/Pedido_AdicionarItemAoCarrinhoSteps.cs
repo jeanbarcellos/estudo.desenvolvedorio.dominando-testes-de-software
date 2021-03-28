@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NerdStore.BDD.Tests.Config;
+using System;
 using TechTalk.SpecFlow;
 
 namespace NerdStore.BDD.Tests.Pedido
@@ -6,18 +7,22 @@ namespace NerdStore.BDD.Tests.Pedido
     [Binding]
     public class Pedido_AdicionarItemAoCarrinhoSteps
     {
-        [Given(@"O usuario esteja logado")]
-        public void DadoOUsuarioEstejaLogado()
+        [Given(@"Que um produto esteja na vitrine")]
+        public void DadoQueUmProdutoEstejaNaVitrine()
         {
             // Arrange
+            var browser = new SeleniumHelper(Browser.Chrome, new ConfigurationHelper(), false);
+            browser.IrParaUrl("https://desenvolvedor.io");
+            browser.ClicarLinkPorTexto("Entrar");
+            browser.PreencherTextBoxPorId("Email", "contato@teste.com");
 
             // Act
 
             // Assert
         }
 
-        [Given(@"Que um produto esteja na vitrine")]
-        public void DadoQueUmProdutoEstejaNaVitrine()
+        [Given(@"O usuario esteja logado")]
+        public void DadoOUsuarioEstejaLogado()
         {
             // Arrange
 
