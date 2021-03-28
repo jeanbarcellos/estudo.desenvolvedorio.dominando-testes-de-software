@@ -33,6 +33,7 @@ namespace NerdStore.WebApp.Tests
             };
 
             await _testsFixture.RealizarLoginApi();
+            _testsFixture.Client.AtribuirToken(_testsFixture.UsuarioToken);
 
             // Act
             var postResponse = await _testsFixture.Client.PostAsJsonAsync("api/carrinho", itemInfo);
