@@ -86,6 +86,29 @@ namespace NerdStore.BDD.Tests.Pedido
             Assert.Equal(valorUnitario, valorCarrinho);
         }
 
+        [When(@"O usuário adicionar um item acima da quantidade máxima permitida")]
+        public void QuandoOUsuarioAdicionarUmItemAcimaDaQuantidadeMaximaPermitida()
+        {
+            // Arrange
+            _pedidoTela.ClicarAdicionarQuantidadeItens(Vendas.Domain.Pedido.MAX_UNIDADES_ITEM + 1);
+
+            // Act
+            _pedidoTela.ClicarEmComprarAgora();
+        }
+
+        [Then(@"Receberá uma mensagem de erro mencionando que foi ultrapassada a quantidade limite")]
+        public void EntaoReceberaUmaMensagemDeErroMencionandoQueFoiUltrapassadaAQuantidadeLimite()
+        {
+            // Arrange
+            var mensagem = _pedidoTela.ObterMensagemDeErroProduto();
+
+            // Assert
+            Assert.Contains($"A quantidade máxima de um item é {Vendas.Domain.Pedido.MAX_UNIDADES_ITEM}", mensagem);
+        }
+
+
+
+
         [Given(@"Não tenha nenhum produto adicionado ao carrinho")]
         public void DadoNaoTenhaNenhumProdutoAdicionadoAoCarrinho()
         {
@@ -106,29 +129,8 @@ namespace NerdStore.BDD.Tests.Pedido
             // Assert
         }
 
-        [When(@"O usuário adicionar um item acima da quantidade máxima permitida")]
-        public void QuandoOUsuarioAdicionarUmItemAcimaDaQuantidadeMaximaPermitida()
-        {
-            // Arrange
-
-            // Act
-
-            // Assert
-        }
-
         [When(@"O usuário adicionar a quantidade máxima permitida ao carrinho")]
         public void QuandoOUsuarioAdicionarAQuantidadeMaximaPermitidaAoCarrinho()
-        {
-            // Arrange
-
-            // Act
-
-            // Assert
-        }
-
-
-        [Then(@"Receberá uma mensagem de erro mencionando que foi ultrapassada a quantidade limite")]
-        public void EntaoReceberaUmaMensagemDeErroMencionandoQueFoiUltrapassadaAQuantidadeLimite()
         {
             // Arrange
 
