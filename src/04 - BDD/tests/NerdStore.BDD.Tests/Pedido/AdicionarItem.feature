@@ -4,9 +4,9 @@
 	Para que eu possa comprá-lo posteriormente
 
 Cenário: Adicionar item com sucesso a um novo pedido
-Dado Que um produto esteja na vitrine
+Dado O usuario esteja logado
+E Que um produto esteja na vitrine
 E Esteja disponivel no estoque
-E O usuario esteja logado
 Quando O usuário adicionar uma unidade ao carrinho
 Então O usuário será redirecionado ao resumo da compra
 E O valor total do pedido será exatamente o valor do item adicionado
