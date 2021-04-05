@@ -1,0 +1,43 @@
+MSTest
+https://github.com/microsoft/testfx
+
+NUnit (Portabilidade do JUnit do Java)
+https://nunit.org/
+
+XUnit
+https://xunit.net/ 
+
+Moq
+https://github.com/Moq/moq4 
+
+Fixtures
+https://xunit.net/docs/shared-context 
+
+Fluent Assertions
+https://fluentassertions.com/
+
+AutoMock
+https://github.com/moq/Moq.AutoMocker
+
+SpecFlow
+https://specflow.org/
+
+Selenium
+https://www.selenium.dev/
+https://chromedriver.chromium.org/downloads
+
+Teste de Carga
+https://docs.microsoft.com/pt-br/aspnet/core/test/load-tests?view=aspnetcore-5.0
+https://jmeter.apache.org/
+https://www.blazemeter.com/
+
+
+
+Artigos
+
+https://jozimarback.medium.com/testes-de-unidade-e-integra%C3%A7%C3%A3o-com-net-core-e-xunit-fad7c18a29a1
+
+https://medium.com/@RobertKhou/asp-net-core-mvc-identity-using-postgresql-database-bc52255f67c4
+
+https://docs.microsoft.com/pt-br/aspnet/core/test/integration-tests
+
