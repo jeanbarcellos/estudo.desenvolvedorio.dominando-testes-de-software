@@ -24,7 +24,7 @@ Referências:
 <br>
 <br>
 
-# Índice
+## Índice
 
 1. Introdução
    1. Apresentação
@@ -113,17 +113,70 @@ Referências:
 9. Encerramento
    1. Palavras Finais
 
-
-
-
 ## Anotações
 
 Usar o PostgreSQL ao invés do SQL Server
 
-* https://medium.com/@RobertKhou/asp-net-core-mvc-identity-using-postgresql-database-bc52255f67c4
-
+- https://medium.com/@RobertKhou/asp-net-core-mvc-identity-using-postgresql-database-bc52255f67c4
 
 Testes de Integração
 
-* https://docs.microsoft.com/pt-br/aspnet/core/test/integration-tests
+- https://docs.microsoft.com/pt-br/aspnet/core/test/integration-tests
 
+## Leituras Indicadas
+
+- Test-Driven Development (_Casa do Código_)
+- Teste Drivem Development (_Kent Back_)
+- Growing Object-Oriented Software, Guided By tests (_Steve Freeman Nat Pryce_)
+- Pratical Test-Driven Development Using C#7 (_Clayton Hunt, John Callaway_)
+
+## Links
+
+**MSTest**
+
+- https://github.com/microsoft/testfx
+
+**NUnit** (Portabilidade do JUnit do Java)
+
+- https://nunit.org/
+
+**XUnit**
+
+- https://xunit.net/
+
+**Moq**
+
+- https://github.com/Moq/moq4
+
+**Fixtures**
+
+- https://xunit.net/docs/shared-context
+
+**Fluent Assertions**
+
+- https://fluentassertions.com/
+
+**AutoMock**
+
+- https://github.com/moq/Moq.AutoMocker
+
+**SpecFlow**
+
+- https://specflow.org/
+
+**Selenium**
+
+- https://www.selenium.dev/
+- https://chromedriver.chromium.org/downloads
+
+**Teste de Carga**
+
+- https://docs.microsoft.com/pt-br/aspnet/core/test/load-tests?view=aspnetcore-5.0
+- https://jmeter.apache.org/
+- https://www.blazemeter.com/
+
+**Artigos**
+
+- https://jozimarback.medium.com/testes-de-unidade-e-integra%C3%A7%C3%A3o-com-net-core-e-xunit-fad7c18a29a1
+- https://medium.com/@RobertKhou/asp-net-core-mvc-identity-using-postgresql-database-bc52255f67c4
+- https://docs.microsoft.com/pt-br/aspnet/core/test/integration-tests
