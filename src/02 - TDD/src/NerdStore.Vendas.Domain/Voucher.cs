@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using FluentValidation;
 using FluentValidation.Results;
 using NerdStore.Core.DomainObjects;
 
