@@ -16,9 +16,11 @@ namespace NerdStore.WebApp.MVC.Controllers
 
         protected Guid ClienteId;
 
-        protected ControllerBase(INotificationHandler<DomainNotification> notifications,
-                                 IMediator mediatorHandler,
-                                 IHttpContextAccessor httpContextAccessor)
+        protected ControllerBase(
+            INotificationHandler<DomainNotification> notifications,
+            IMediator mediatorHandler,
+            IHttpContextAccessor httpContextAccessor
+        )
         {
             _notifications = (DomainNotificationHandler)notifications;
             _mediatorHandler = mediatorHandler;

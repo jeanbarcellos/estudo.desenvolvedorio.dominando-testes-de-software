@@ -18,11 +18,13 @@ namespace NerdStore.WebApp.MVC.Controllers
         private readonly IPedidoQueries _pedidoQueries;
         private readonly IMediator _mediatorHandler;
 
-        public CarrinhoController(INotificationHandler<DomainNotification> notifications,
-                                  IProdutoAppService produtoAppService,
-                                  IMediator mediatorHandler,
-                                  IPedidoQueries pedidoQueries,
-                                  IHttpContextAccessor httpContextAccessor) : base(notifications, mediatorHandler, httpContextAccessor)
+        public CarrinhoController(
+            INotificationHandler<DomainNotification> notifications,
+            IProdutoAppService produtoAppService,
+            IMediator mediatorHandler,
+            IPedidoQueries pedidoQueries,
+            IHttpContextAccessor httpContextAccessor
+        ) : base(notifications, mediatorHandler, httpContextAccessor)
         {
             _produtoAppService = produtoAppService;
             _mediatorHandler = mediatorHandler;
@@ -54,7 +56,7 @@ namespace NerdStore.WebApp.MVC.Controllers
 
             if (OperacaoValida())
             {
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
 
             TempData["Erros"] = ObterMensagensErro();
@@ -73,10 +75,10 @@ namespace NerdStore.WebApp.MVC.Controllers
 
             if (OperacaoValida())
             {
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
 
-            return View("Index", await _pedidoQueries.ObterCarrinhoCliente(ClienteId));
+            return View(nameof(Index), await _pedidoQueries.ObterCarrinhoCliente(ClienteId));
         }
 
         [HttpPost]
@@ -91,10 +93,10 @@ namespace NerdStore.WebApp.MVC.Controllers
 
             if (OperacaoValida())
             {
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
 
-            return View("Index", await _pedidoQueries.ObterCarrinhoCliente(ClienteId));
+            return View(nameof(Index), await _pedidoQueries.ObterCarrinhoCliente(ClienteId));
         }
 
         [HttpPost]
@@ -106,10 +108,10 @@ namespace NerdStore.WebApp.MVC.Controllers
 
             if (OperacaoValida())
             {
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
 
-            return View("Index", await _pedidoQueries.ObterCarrinhoCliente(ClienteId));
+            return View(nameof(Index), await _pedidoQueries.ObterCarrinhoCliente(ClienteId));
         }
 
         [HttpGet]
