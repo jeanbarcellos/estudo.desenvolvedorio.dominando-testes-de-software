@@ -32,8 +32,8 @@ namespace Features.Tests
 
             // Assert
             Assert.True(cliente.EhValido());
-            mocker.GetMock<IClienteRepository>().Verify(r => r.Adicionar(cliente),Times.Once);
-            mocker.GetMock<IMediator>().Verify(m=>m.Publish(It.IsAny<INotification>(),CancellationToken.None),Times.Once);
+            mocker.GetMock<IClienteRepository>().Verify(r => r.Adicionar(cliente), Times.Once);
+            mocker.GetMock<IMediator>().Verify(m => m.Publish(It.IsAny<INotification>(), CancellationToken.None), Times.Once);
         }
 
         [Fact(DisplayName = "Adicionar Cliente com Falha")]
@@ -71,7 +71,7 @@ namespace Features.Tests
             // Assert
             mocker.GetMock<IClienteRepository>().Verify(r => r.ObterTodos(), Times.Once);
             Assert.True(clientes.Any());
-            Assert.False(clientes.Count(c=>!c.Ativo) > 0);
+            Assert.False(clientes.Count(c => !c.Ativo) > 0);
         }
     }
 }
