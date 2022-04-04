@@ -1,5 +1,4 @@
-﻿using System;
-using NerdStore.BDD.Tests.Config;
+﻿using NerdStore.BDD.Tests.Config;
 using NerdStore.BDD.Tests.Usuario;
 using TechTalk.SpecFlow;
 using Xunit;
